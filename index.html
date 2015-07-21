@@ -11,7 +11,8 @@
           dataType: 'jsonp',
           success: function(location) {
             if (location.city) {
-              jQuery('#address').html("and now I know where you live cough cough " + location.city + ", " + location.region_code);
+              jQuery('#address').html("By the way, it is not that difficult finding you. You live in "
+              + location.city + ", " + location.region_code);
             }
           }
         } );
@@ -19,7 +20,10 @@
     </script>
   </head>
   <body>
-    You are right! I am real
+    I don't know who you are but I might know what you want.
+    If you are looking to hire me I can tell you that I do have a very particular set of skills.
+    Skills I have acquired over a six year career. Skills that make me a nightmare for the products you own.
+    If you hire me now that'll be the end of it but if you don't, I will look for you, I will find you and I will make you hire me!
   </br>
     <span id="address"></span>
   </body>
