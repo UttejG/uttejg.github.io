@@ -10,8 +10,6 @@
           type: 'POST',
           dataType: 'jsonp',
           success: function(location) {
-            // example where I update content on the page.
-            alert("Hi");
             jQuery('#address').html(location.city + ", " + location.region_code);
           }
         } );
