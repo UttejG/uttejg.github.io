@@ -7,10 +7,8 @@ body {
   position:relative;
   z-index:0;
   padding-top:30px;
-  text-align:center;
-  max-width:1050px;
-  padding-left:15px !important;
-  padding-right:15px !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #project-wrap {
@@ -20,3 +18,22 @@ body {
   text-align: left;
   position: relative;
 }
+
+.bqstart {
+   float: left;
+   height: 45px;
+   margin-top: -20px;
+   padding-top: 45px;
+   margin-bottom: -50px;
+   font-size: 700%;
+   color: #FF0000;
+ }
+
+ .bqend {
+   float: right;
+   height: 25px;
+   margin-top: 0px;
+   padding-top: 45px;
+   font-size: 700%;
+   color: #FF0000;
+ }
