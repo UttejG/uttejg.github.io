@@ -1,0 +1,22 @@
+body {
+    font-family: Helvetica;
+}
+
+#site-content {
+  box-sizing: border-box;
+  position:relative;
+  z-index:0;
+  padding-top:30px;
+  text-align:center;
+  max-width:1050px;
+  padding-left:15px !important;
+  padding-right:15px !important;
+}
+
+#project-wrap {
+  display: inline-block;
+  max-width: 100%;
+  padding-bottom: 43px;
+  text-align: left;
+  position: relative;
+}
