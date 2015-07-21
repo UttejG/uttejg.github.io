@@ -1,1 +1,26 @@
-You are right! I am real :)
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Uttej Guduru</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $.ajax( {
+          url: '//freegeoip.net/json/',
+          type: 'POST',
+          dataType: 'jsonp',
+          success: function(location) {
+            // example where I update content on the page.
+            alert("Hi");
+            jQuery('#address').html(location.city + " ," + location.region_name + location.region_code);
+          }
+        } );
+      });
+    </script>
+  </head>
+  <body>
+    You are right!
+  </br>
+    I am real and now I know where you live in <span id="address"></span>
+  </body>
+</html>
