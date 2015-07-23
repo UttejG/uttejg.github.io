@@ -22,8 +22,9 @@ body {
 .bqstart {
    float: left;
    height: 45px;
-   margin-top: -20px;
+   margin-top: -80px;
    padding-top: 45px;
+   padding-bottom: 45px;
    margin-bottom: -50px;
    font-size: 700%;
    color: Black;
@@ -33,7 +34,7 @@ body {
    float: right;
    height: 25px;
    margin-top: 0px;
-   padding-top: 45px;
+   padding-top: 10px;
    font-size: 700%;
    color: Black;
  }
