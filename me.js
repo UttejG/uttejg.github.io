@@ -15,12 +15,8 @@ var generateMap = function(position) {
   var latlng = new google.maps.LatLng(latitude, longitude);
   var myOptions = {
     zoom: 15,
-    enableHighAccuracy: true,
     center: latlng,
-    timeout: 10 * 1000,
-    maximumAge: 5 * 60 * 1000,
     mapTypeControl: false,
-    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
@@ -33,7 +29,7 @@ var generateMap = function(position) {
 
   document.querySelector('#zinger').innerText =
     accuracy ?
-      "By the way, I have barely started and already found you!" :
+      "By the way, I have barely started and I already found you!" :
       "Haha! Did you really think I can't find your location because you blocked your location?";
 }
 
