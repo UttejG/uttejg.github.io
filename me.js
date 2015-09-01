@@ -17,6 +17,8 @@ var generateMap = function(position) {
     zoom: 15,
     enableHighAccuracy: true,
     center: latlng,
+    timeout: 10 * 1000,
+    maximumAge: 5 * 60 * 1000,
     mapTypeControl: false,
     navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -29,7 +31,10 @@ var generateMap = function(position) {
       title: accuracy ? "You are here!(at least within a " + accuracy + " meter radius)" : "You are close to here!"
   });
 
-  document.querySelector('#zinger').innerText = "By the way, it didn't take much time to find you!";
+  document.querySelector('#zinger').innerText =
+    accuracy ?
+      "By the way, I have barely started and already found you!" :
+      "Haha! Did you really think I can't find your location because you blocked your location?";
 }
 
 var error = function(msg) {
@@ -54,5 +59,5 @@ var error = function(msg) {
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(generateMap, error);
 } else {
-  console.log('geolocation not available on client!');
+  console.log('Geolocation is not supported by client!');
 }
