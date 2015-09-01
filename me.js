@@ -37,7 +37,7 @@ var error = function(msg) {
   console.log(msg);
   // If geolocation is not enabled, fall back to freegeoip
   $.ajax({
-    url: 'freegeoip.net/json/',
+    url: 'http://freegeoip.net/json/',
     type: 'POST',
     dataType: 'jsonp',
     success: function(location) {
