@@ -30,7 +30,7 @@ var generateMap = function(position) {
   document.querySelector('#zinger').innerText =
     accuracy ?
       "By the way, I have barely started and I already found you!" :
-      "Haha! Did you really think I can't find your location because you blocked your location?";
+      "Haha! Did you really think I can't find your location because you blocked it?";
 }
 
 var error = function(msg) {
