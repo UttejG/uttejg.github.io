@@ -1,5 +1,4 @@
-var success = function(position) {
-
+var generateMap = function(position) {
   if (typeof position === "string") { position = JSON.parse(position) };
 
   var latitude = position.coords.latitude,
@@ -35,9 +34,10 @@ var success = function(position) {
 
 var error = function(msg) {
   console.log('Failed to retrieve position using geolocation! Falling back...');
+  console.log(msg);
   // If geolocation is not enabled, fall back to freegeoip
   $.ajax({
-    url: 'http://freegeoip.net/json/',
+    url: 'freegeoip.net/json/',
     type: 'POST',
     dataType: 'jsonp',
     success: function(location) {
@@ -45,13 +45,14 @@ var error = function(msg) {
       '"latitude": ' + location.latitude + ', ' +
       '"longitude": ' + location.longitude + ', ' +
       '"accuracy": ""}}';
-      success(postion);
+      console.log('Fall back success!');
+      generateMap(postion);
     }
   });
 }
 
 if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(success, error);
+  navigator.geolocation.getCurrentPosition(generateMap, error);
 } else {
-  console.log('No geolocation');
+  console.log('geolocation not available on client!');
 }

@@ -66,8 +66,8 @@ img {
 }
 
 a:hover {
-opacity: .5;
-filter:alpha(opacity=80); /* For IE8 and earlier */
+  opacity: .5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
 }
 
 #container {
