@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Uttej Guduru</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- title and meta -->
+    <meta charset="utf-8" />
     <meta name="description" content="A place to depict my professional wisdom!">
-    <script>
-      $(document).ready(function(){
-        $.ajax( {
-          url: '//freegeoip.net/json/',
-          type: 'POST',
-          dataType: 'jsonp',
-          success: function(location) {
-            if (location.city) {
-              jQuery('#address').html("By the way, it is not that difficult finding you. You live in "
-              + location.city + ", " + location.region_code);
-            }
-          }
-        } );
-      });
-    </script>
+    <title>Uttej Guduru</title>
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <div class="container">
-      <div class="project-wrap">
-        <blockquote>
-          <span class="bqstart">“</span>
-          I don't know who you are but I might know what you want.
-          If you are looking to hire me I can tell you that I do have a very particular set of skills.
-          Skills I have acquired over a six year career.
-          Skills that make me a nightmare for the products you own.
-          If you hire me now, that'll be the end of it but if you don't, I will look for you, I will find you and I will make you hire me!
-          <span class="bqend">”</span>
+    <header>
+      Uttej Guduru
+    </header>
+    <div id="container">
+      <p>
+        <blockquote class="bq">
+            I don't know who you are but I might know what you want.
+            If you are looking to hire me, I can tell you that I do have a very particular set of skills.
+            Skills I have acquired over a six year career. Skills that make me a nightmare for the products you own.
+            If you hire me now, that'll be the end of it but if you don't, I will look for you, I will find you and I will make you hire me!
         </blockquote>
-        <span id="address"></span>
-      </div>
-     </div>
-   </body>
+      </p>
+      <br/>
+      <div id="zinger"></div>
+    </div>
+    <br/>
+    <footer>
+      <a href="https://github.com/UttejG"><img src="images/github.png"></img></a>
+      <a href="https://www.linkedin.com/pub/uttej-guduru/3a/854/257"><img src="images/linkedin.png"></img></a>
+    </footer>
+    <!-- js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="me.js"></script>
+ </body>
 </html>
