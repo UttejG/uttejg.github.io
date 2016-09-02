@@ -52,8 +52,10 @@ var error = function(msg) {
   });
 }
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(generateMap, error);
-} else {
-  console.log('Geolocation is not supported by client!');
+var initMap = function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(generateMap, error);
+  } else {
+    console.log('Geolocation is not supported by client!');
+  }
 }
