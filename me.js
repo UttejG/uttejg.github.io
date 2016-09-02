@@ -22,7 +22,7 @@ var generateMap = function(position) {
   var geoOptions = {
     maximumAge: 5 * 60 * 1000,
     timeout: 10 * 1000
-  }
+  };
   var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions, geoOptions);
 
   var marker = new google.maps.Marker({
