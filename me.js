@@ -5,11 +5,15 @@ var generateMap = function(position) {
       longitude = position.coords.longitude,
       accuracy = position.coords.accuracy;
 
+  var geoOptions = {
+    maximumAge: 5 * 60 * 1000,
+    timeout: 10 * 1000
+  }
+
   var mapcanvas = document.createElement('div');
   mapcanvas.id = 'mapcanvas';
   mapcanvas.style.height = '400px';
   mapcanvas.style.width = '560px';
-  debugger;
 
   document.querySelector('#container').appendChild(mapcanvas);
 
@@ -20,7 +24,7 @@ var generateMap = function(position) {
     mapTypeControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions, geoOptions);
 
   var marker = new google.maps.Marker({
       position: latlng,
