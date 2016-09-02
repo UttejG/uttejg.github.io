@@ -9,6 +9,7 @@ var generateMap = function(position) {
   mapcanvas.id = 'mapcanvas';
   mapcanvas.style.height = '400px';
   mapcanvas.style.width = '560px';
+  debugger;
 
   document.querySelector('#container').appendChild(mapcanvas);
 
@@ -38,7 +39,7 @@ var error = function(msg) {
   console.log(msg);
   // If geolocation is not enabled, fall back to freegeoip
   $.ajax({
-    url: 'http://freegeoip.net/json/',
+    url: 'https://freegeoip.net/json/',
     type: 'POST',
     dataType: 'jsonp',
     success: function(location) {
