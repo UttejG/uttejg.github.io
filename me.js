@@ -46,19 +46,38 @@ var generateMap = function(position) {
 var error = function(msg) {
   console.log('Failed to retrieve position using geolocation! Falling back...');
   console.log(msg);
-  // If geolocation is not enabled, fall back to freegeoip
+  // If geolocation is not enabled, fall back to ip address
   $.ajax({
-    url: 'https://freegeoip.net/json/',
-    type: 'POST',
-    dataType: 'jsonp',
+    url: 'https://ipapi.co/json/',
+    type: 'GET',
+    dataType: 'json',
     success: function(location) {
-      var postion = '{ "coords": { ' +
-      '"latitude": ' + location.latitude + ', ' +
-      '"longitude": ' + location.longitude + ', ' +
-      '"accuracy": ""}}';
+      console.log(location);
+      var position = {
+        coords: {
+          latitude: location.latitude,
+          longitude: location.longitude,
+          accuracy: null
+        }
+      };
       console.log('Fall back success!');
-      generateMap(postion);
-    }
+      generateMap(JSON.stringify(position));
+    },
+    error: function(xhr, status, error) {
+      console.error('Geolocation fallback failed:', error);
+      // Provide a fallback experience
+      var defaultPosition = {
+        coords: {
+          // Default to a fallback location (e.g., city center)
+          latitude: 37.7749, // Example: San Francisco
+          longitude: -122.4194,
+          accuracy: null
+        }
+      };
+      console.log('Using default location');
+      generateMap(JSON.stringify(defaultPosition));
+    },
+    timeout: 5000 // Add timeout to prevent long waiting times
   });
 }
 
