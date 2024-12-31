@@ -68,8 +68,8 @@ var error = function(msg) {
       // Provide a fallback experience
       var defaultPosition = {
         coords: {
-          // Default to a fallback location (e.g., city center)
-          latitude: 37.7749, // Example: San Francisco
+          // Defaulting to San Francisco
+          latitude: 37.7749,
           longitude: -122.4194,
           accuracy: null
         }
