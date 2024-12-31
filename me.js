@@ -14,26 +14,32 @@ var generateMap = function(position) {
 
   var latlng = new google.maps.LatLng(latitude, longitude);
   var myOptions = {
-    zoom: 15,
+    zoom: 19,
     center: latlng,
     mapTypeControl: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.SATELLITE,
+    mapId: "7efa9a40d5adc7fb",
   };
   var geoOptions = {
     maximumAge: 5 * 60 * 1000,
     timeout: 10 * 1000
   };
-  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions, geoOptions);
+  var map =
+    new google.maps.Map(
+      document.getElementById("mapcanvas"),
+      myOptions,
+      geoOptions
+    );
 
-  var marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title: accuracy ? "You are here!(at least within a " + accuracy + " meter radius)" : "You are close to here!"
+  var marker = new google.maps.marker.AdvancedMarkerElement({
+    position: latlng,
+    map: map,
+    title: accuracy ? "You are here!(at least within a " + accuracy + " meter radius)" : "You are close to here!"
   });
 
   document.querySelector('#zinger').innerText =
     accuracy ?
-      "By the way, I have barely started and I already found you!" :
+      "By the way, I have barely started looking and I already found you!" :
       "Haha! Did you really think I can't find your location because you blocked it?";
 }
 
