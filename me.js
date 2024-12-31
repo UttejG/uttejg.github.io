@@ -14,7 +14,7 @@ var generateMap = function(position) {
 
   var latlng = new google.maps.LatLng(latitude, longitude);
   var myOptions = {
-    zoom: 19,
+    zoom: 17,
     center: latlng,
     mapTypeControl: false,
     mapTypeId: google.maps.MapTypeId.SATELLITE,
@@ -43,9 +43,9 @@ var generateMap = function(position) {
       "Haha! Did you really think I can't find your location because you blocked it?";
 }
 
-var error = function(msg) {
-  console.log('Failed to retrieve position using geolocation! Falling back...');
-  console.log(msg);
+var errorHandler = function(geoLocationError) {
+  console.log(`Failed to retrieve position using geolocation! [Error: ${geoLocationError.message}]`);
+  console.log('Falling back to ip based lookup ...');
   // If geolocation is not enabled, fall back to ip address
   $.ajax({
     url: 'https://ipapi.co/json/',
@@ -60,7 +60,7 @@ var error = function(msg) {
           accuracy: null
         }
       };
-      console.log('Fall back success!');
+      console.log('Fall back succeeded!');
       generateMap(JSON.stringify(position));
     },
     error: function(xhr, status, error) {
@@ -83,7 +83,7 @@ var error = function(msg) {
 
 var initMap = function() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(generateMap, error);
+    navigator.geolocation.getCurrentPosition(generateMap, errorHandler);
   } else {
     console.log('Geolocation is not supported by client!');
   }
