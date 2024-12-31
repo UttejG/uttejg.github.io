@@ -45,14 +45,14 @@ var generateMap = function(position) {
 
 var errorHandler = function(geoLocationError) {
   console.log(`Failed to retrieve position using geolocation! [Error: ${geoLocationError.message}]`);
+
   console.log('Falling back to ip based lookup ...');
-  // If geolocation is not enabled, fall back to ip address
   $.ajax({
     url: 'https://ipapi.co/json/',
     type: 'GET',
     dataType: 'json',
     success: function(location) {
-      console.log(location);
+      console.log(`Narrowed down the location to ${location.city},${location.region} ${location.country_code}`);
       var position = {
         coords: {
           latitude: location.latitude,
@@ -64,17 +64,16 @@ var errorHandler = function(geoLocationError) {
       generateMap(JSON.stringify(position));
     },
     error: function(xhr, status, error) {
-      console.error('Geolocation fallback failed:', error);
-      // Provide a fallback experience
+      console.error(`Geolocation fallback failed: [Error: ${error}]`);
+      // If everything fails, use San Francisco as default
       var defaultPosition = {
         coords: {
-          // Defaulting to San Francisco
           latitude: 37.7749,
           longitude: -122.4194,
           accuracy: null
         }
       };
-      console.log('Using default location');
+      console.log('Using San Francisco as default location!');
       generateMap(JSON.stringify(defaultPosition));
     },
     timeout: 5000 // Add timeout to prevent long waiting times
@@ -85,6 +84,6 @@ var initMap = function() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(generateMap, errorHandler);
   } else {
-    console.log('Geolocation is not supported by client!');
+    console.error('Geolocation is not supported by client!');
   }
 }
