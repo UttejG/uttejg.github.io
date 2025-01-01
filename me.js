@@ -14,7 +14,7 @@ var generateMap = function(position) {
 
   var latlng = new google.maps.LatLng(latitude, longitude);
   var myOptions = {
-    zoom: 17,
+    zoom: 1,
     center: latlng,
     mapTypeControl: false,
     mapTypeId: google.maps.MapTypeId.SATELLITE,
@@ -31,16 +31,36 @@ var generateMap = function(position) {
       geoOptions
     );
 
+  // Create the marker but initially hide it
   var marker = new google.maps.marker.AdvancedMarkerElement({
     position: latlng,
-    map: map,
-    title: accuracy ? "You are here!(at least within a " + accuracy + " meter radius)" : "You are close to here!"
+    map: null, // Don't show marker initially
+    title: accuracy ? "You're here! (Well, within a " + accuracy + " meter radius at least)" : "You're around here somewhere"
   });
 
-  document.querySelector('#zinger').innerText =
-    accuracy ?
-      "By the way, I have barely started looking and I already found you!" :
-      "Haha! Did you really think I can't find your location because you blocked it?";
+  // Animate the zoom
+  setTimeout(function() {
+    var zoomAnimation = setInterval(function() {
+      var currentZoom = map.getZoom();
+
+      // Increase zoom
+      if (currentZoom < 17) {
+        map.setZoom(currentZoom + 1);
+      } else {
+        clearInterval(zoomAnimation);
+        // Show marker after animation completes
+        marker.map = map;
+
+        document.querySelector('#zinger').innerText =
+          accuracy ?
+            "By the way, I just started looking, and I’ve already found you!" :
+            "Haha! Did you really think I couldn’t find your location just because you blocked it?";
+      }
+    }, 250); // Adjust timing for different zooming effects
+  }, 1000); // Initial delay before animation starts
+
+  // setting this div to zero width space so that it doesn't affect the layout
+  document.querySelector('#zinger').innerText = "\u200B";
 }
 
 var errorHandler = function(geoLocationError) {
